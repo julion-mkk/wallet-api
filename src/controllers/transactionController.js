@@ -41,11 +41,11 @@ export const getTransactionSummaryByUserId = async (req, res) => {
             SELECT COALESCE(SUM(amount), 0) AS balance FROM transactions WHERE user_id = ${userId}
         `*/
         const incomeResult = await sql`
-            SELECT COALESCE(SUM(amount), 0) AS income FROM transactions WHERE user_id = ${userId} AND category = 'income'
+            SELECT COALESCE(SUM(amount), 0) AS income FROM transactions WHERE user_id = ${userId} AND category = 'Income'
         `
 
         const expenseResult = await sql`
-            SELECT COALESCE(SUM(amount), 0) AS expense FROM transactions WHERE user_id = ${userId} AND category = 'expense'
+            SELECT COALESCE(SUM(amount), 0) AS expense FROM transactions WHERE user_id = ${userId} AND category != 'Income'
         `
 
         res.status(200).json({

@@ -4,9 +4,10 @@ import {initDB} from "./config/db.js";
 import rateLimiter from "./middleware/reateLimiter.js";
 import transactionsRoute from "./routes/transactionsRoute.js";
 import job from "./config/cron.js";
-dotenv.config();
 
+dotenv.config();
 const app = express();
+console.log(process.env.NODE_ENV);
 if(process.env.NODE_ENV !== "production") {
     job.start();
 }
