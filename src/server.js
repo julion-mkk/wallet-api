@@ -8,9 +8,7 @@ import job from "./config/cron.js";
 dotenv.config();
 const app = express();
 console.log(process.env.NODE_ENV);
-if(process.env.NODE_ENV !== "production") {
-    job.start();
-}
+job.start();
 app.use(rateLimiter);
 app.use(express.json());
 
